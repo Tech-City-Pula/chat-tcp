@@ -26,7 +26,9 @@ export const QuestionInput: FC<QuestionInpuProps> = ({
           placeholder="ask away"
         />
       </div>
-      {promptError && <div className="text-red-400">Prompt me bastard</div>}
+      {promptError && (
+        <div className="text-red-400">Please write something</div>
+      )}
       <button
         onClick={generateResponse}
         className="text-white border border-white px-10 py-1 rounded-xl "
