@@ -2,7 +2,7 @@ import { ChangeSetting } from "@/components/ChangeSettings";
 import { ChatGptModels, TModel } from "@/components/ChatGptModels";
 import { LoadingSkeleton } from "@/components/LoadingSkeletion";
 import { QuestionInput } from "@/components/QuestionAndResponse";
-import { axiosInstance } from "@/utils/axiosInstance";
+import axios from "axios";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 
@@ -40,7 +40,7 @@ export default function Home() {
       return;
     }
 
-    const response = await axiosInstance.post("/completion", {
+    const response = await axios.post("/api/completion", {
       prompt,
       temperature,
       max_tokens: tokens,
@@ -61,7 +61,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchModels = async () => {
-      const response = await axiosInstance.get("/models", {
+      const response = await axios.get("/api/models", {
         headers: {
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_CHAT_GPT_KEY}`,
         },
